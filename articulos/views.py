@@ -51,18 +51,6 @@ class VistaListaCategorias(ListView):
         context['categorias'] = Articulo.objects.values_list('categoria', flat=True).distinct()
         return context
     
-# class VistaArticulosPorCategoria(ListView):
-#     model = Articulo
-#     template_name = 'articulos_por_categoria.html'
-#     context_object_name = 'articulo_list'
-
-#     def get_queryset(self):
-#         categoria_seleccionada = self.kwargs['categoria']
-#         return Articulo.objects.filter(categoria=categoria_seleccionada)
-    
-# class VistaListaArticulos(ListView):
-#     model=Articulo
-#     template_name='lista_articulos.html'
 
 class VistaDetalleArticulo(DetailView):
     model = Articulo
@@ -74,6 +62,8 @@ class VistaModificacionArticulo(UpdateView):
         'titulo',
         'cuerpo',
         'genero',
+        'categoria',
+        'costo',
     )
     template_name='editar_articulo.html'
     success_url=reverse_lazy('lista_articulos')

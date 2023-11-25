@@ -7,10 +7,11 @@ class Articulo(models.Model):
     titulo=models.CharField(max_length=255)
     cuerpo=models.TextField()
     fecha= models.DateTimeField(auto_now_add=True)
-    genero = models.CharField(max_length=20, blank=True)
-    categoria = models.CharField(max_length=20,blank=True)
+    genero = models.CharField(max_length=20, blank=True)#nuevo
+    categoria = models.CharField(max_length=20,blank=True) 
     imagen = models.ImageField(blank=True,null=True)
     costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
+
 
     def __str__(self):
         return self.titulo
