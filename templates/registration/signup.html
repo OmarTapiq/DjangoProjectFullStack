@@ -1,0 +1,13 @@
+<!--plantillas/resgistration/signup-->
+{% extends '_base.html' %}
+
+{% block titulo %} - Registro {% endblock titulo %}
+
+{% block contenido %}
+<h2>Registro</h2>
+<form action="" method="post">{% csrf_token %}
+
+    <button type="submit" class="btn btn-success">Registrarme</button>
+</form>
+<p>&nbsp;</p>
+{% endblock contenido %}

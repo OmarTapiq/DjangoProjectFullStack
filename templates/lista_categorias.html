@@ -1,0 +1,19 @@
+<!-- templates/lista_categorias.html -->
+{% extends '_base.html' %}
+
+{% block titulo %}Categorías{% endblock titulo %}
+
+{% block contenido %}
+  <h2>Lista de Categorías</h2>
+  <hr>
+  <ul>
+    {% for categoria in categorias %}
+    {% if categoria %}
+        <li>
+            <a class="btn btn-outline-dark" href="{% url 'lista_articulos_por_categoria' categoria=categoria %}">{{ categoria }}</a>
+        </li>
+    {% endif %}
+{% endfor %}
+
+  </ul>
+{% endblock contenido %}
