@@ -7,6 +7,7 @@ from django.views import View #movida
 from django.views.generic.detail import SingleObjectMixin  #nueva
 from .models import Articulo
 from .forms import FormularioComentario
+from django.shortcuts import redirect, get_object_or_404
 
 # Create your views here.
 class VistaListaArticulos(ListView):
@@ -103,23 +104,27 @@ class ComentarioGet(DetailView):
 
 
 
-class ComentarioPost(SingleObjectMixin,FormView,View):
-    model=Articulo
+class ComentarioPost(SingleObjectMixin, FormView):
+    model = Articulo
     form_class = FormularioComentario
     template_name = 'detalle_articulo.html'
 
-    def post(self,request,*args, **kwargs):
-        self.Articulo=self.get_object()
-        #form=self.get_form()
-        return super().post(request,*args,**kwargs) 
-    
-    def form_valid(self,form):
-        #comentario=self.form_get()
-        comentario=form.save(commit=False)
-        comentario.Articulo=self.Articulo
-        comentario.save()
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        return super().post(request, *args, **kwargs)
+
+    def form_valid(self, form):
+        form.instance.articulo = self.object
+        form.instance.autor = self.request.user
+        form.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        articulo=self.get_object()
-        return reverse('detalle_articulo',kwargs={'pk':articulo.pk})   
+        return reverse('detalle_articulo', kwargs={'pk': self.object.pk})
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = FormularioComentario()
+        return context
+    
+    

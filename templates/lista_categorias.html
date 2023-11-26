@@ -10,7 +10,7 @@
     {% for categoria in categorias %}
     {% if categoria %}
         <li>
-            <a class="btn btn-outline-dark" href="{% url 'lista_articulos_por_categoria' categoria=categoria %}">{{ categoria }}</a>
+            <a class="btn btn-outline-white btn-success ml-2" href="{% url 'lista_articulos_por_categoria' categoria=categoria %}">{{ categoria }}</a>
         </li>
     {% endif %}
 {% endfor %}

@@ -8,7 +8,7 @@ class Articulo(models.Model):
     cuerpo=models.TextField()
     fecha= models.DateTimeField(auto_now_add=True)
     genero = models.CharField(max_length=20, blank=True)#nuevo
-    categoria = models.CharField(max_length=20,blank=True) 
+    categoria = models.CharField(max_length=20,blank=False) 
     imagen = models.ImageField(blank=True,null=True)
     costo = models.DecimalField(max_digits=10, decimal_places=2, blank=True, null=True)
 

@@ -15,7 +15,7 @@ urlpatterns = [
     path('eliminar/<int:pk>/',VistaEliminacionArticulo.as_view(),name='eliminar_articulo'),
     path('nuevo/',VistaCrearArticulo.as_view(),name='nuevo_articulo'),
     path('categorias/', VistaListaCategorias.as_view(), name='lista_categorias'),
-    path('articulos/categoria/<str:categoria>/', VistaListaArticulosPorCategoria.as_view(), name='lista_articulos_por_categoria')
+    path('articulos/categoria/<str:categoria>/', VistaListaArticulosPorCategoria.as_view(), name='lista_articulos_por_categoria'),
    
     ]
 #agregar nuevo articulo en la pagina, para no poner la url
