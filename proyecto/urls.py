@@ -24,5 +24,6 @@ urlpatterns = [
     path('',TemplateView.as_view(template_name="login.html")),
     path('', include('pass.urls')),
     path('articulos/', include('articulos.urls')),
+    path('acercade/',TemplateView.as_view(template_name="acercade.html"))
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #Le decimos a django donde busque las imagenes
