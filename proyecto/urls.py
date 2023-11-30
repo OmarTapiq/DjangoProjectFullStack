@@ -21,9 +21,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('',TemplateView.as_view(template_name="login.html")),
+    path('',TemplateView.as_view(template_name="inicio.html")),
     path('', include('pass.urls')),
     path('articulos/', include('articulos.urls')),
-    path('acercade/',TemplateView.as_view(template_name="acercade.html"))
+    path('acercade/',TemplateView.as_view(template_name="acercade.html")),
+    path('cuentas/', include('cuentas.urls')),
+    path('cuentas/', include('django.contrib.auth.urls')),
 
 ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) #Le decimos a django donde busque las imagenes

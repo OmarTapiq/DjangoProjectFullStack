@@ -36,6 +36,7 @@
 
 <div>
 <hr>
+<div class="mx-auto w-50 text-center">    
     <h4>Agregar un comentario</h4>
     <form method="post">
         {% csrf_token %}
@@ -43,10 +44,10 @@
         <!--   {{form}}  -->
        
     <hr>
-        <button class="btn btn-success ml-2" type="submit">Guardar</button><!--con esto ya añadimos a detalle articulo lo de agregar comentario -->
+        <button class="btn btn-success w-100" type="submit">Guardar</button><!--con esto ya añadimos a detalle articulo lo de agregar comentario -->
     </form>
 
-
+</div>
     <h4 > <p text-algin="center">Comentarios</p></h4>
 </div>
     {% for comentario in object.comentario_set.all %}

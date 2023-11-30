@@ -1,0 +1,19 @@
+<!--templates/registration/login-->
+{% extends '_base.html' %}
+{% load crispy_forms_tags %}
+
+{% block titulo  %}  - Acceso {% endblock titulo %}
+
+{% block contenido %}
+
+<h2>Acceso</h2>
+<form action="" method="post" style="padding-bottom: 20pt;">{% csrf_token %}
+
+    {{form|crispy}}
+    <button type="submit" class="btn btn-success ml-2">Entrar (Iniciar sesion)</button>
+</form>
+<p>
+<a href="{% url 'password_reset' %}">Olvido su contrasea</a>
+</p>
+
+{% endblock contenido %}

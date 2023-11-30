@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-v2tcp&1i_l8ew#unntx@%j=qc(+g7qp3i8@!n9cm@dwfju%(3f
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -47,8 +47,7 @@ INSTALLED_APPS = [
     'articulos',
      'crispy_forms',
     'crispy_bootstrap5',
-
-    #'cuentas',
+    'cuentas',
     
 ]
 
@@ -159,3 +158,15 @@ LOGIN_REDIRECT_URL = '/articulos'
 
 CRISPY_ALLOWED_TEMPLATE_PACKS='bootstrap5'
 CRISPY_TEMPLATE_PACK='bootstrap5'
+
+AUTH_USER_MODEL = 'cuentas.UsuarioPers'
+
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND='django.core.main.backends.smtp.EmailBackend'
+DEFAULT_FROM_EMAIL = 'Remitente del correo<direccio_origen@email.com>'
+EMAIL_HOST = 'smtp.sendgrid.net'
+EMAIL_HOST_USER ='apikey'
+EMAIL_HOST_PASSWORD='contraseña_sendgrid'
+EMAIL_PORT=587
+EMAIL_USE_TLS=True
