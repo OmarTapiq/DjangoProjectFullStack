@@ -18,13 +18,14 @@ from django.urls import path, include
 from django.views.generic import TemplateView
 from django.conf import settings #para las imagenes
 from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('',TemplateView.as_view(template_name="inicio.html")),
     path('', include('pass.urls')),
     path('articulos/', include('articulos.urls')),
-    path('acercade/',TemplateView.as_view(template_name="acercade.html")),
+    path('acercade/',TemplateView.as_view(template_name="acercade.html"),name="acercade"),
     path('cuentas/', include('cuentas.urls')),
     path('cuentas/', include('django.contrib.auth.urls')),
 

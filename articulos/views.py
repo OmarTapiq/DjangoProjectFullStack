@@ -56,6 +56,12 @@ class VistaListaCategorias(ListView):
 class VistaDetalleArticulo(DetailView):
     model = Articulo
     template_name='detalle_articulo.html'
+    def get(self,request,*args,**kwargs):
+        view=ComentarioGet.as_view()
+        return view(request,*args,**kwargs)
+    def post(self,request,*args,**kwargs):
+        view=ComentarioPost.as_view()
+        return view(request,*args,**kwargs)
 
 class VistaModificacionArticulo(UpdateView):
     model=Articulo
@@ -104,27 +110,25 @@ class ComentarioGet(DetailView):
 
 
 
-class ComentarioPost(SingleObjectMixin, FormView):
-    model = Articulo
+class ComentarioPost(SingleObjectMixin,FormView,View):
+    model=Articulo
     form_class = FormularioComentario
     template_name = 'detalle_articulo.html'
 
-    def post(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        return super().post(request, *args, **kwargs)
-
-    def form_valid(self, form):
-        form.instance.articulo = self.object
-        form.instance.autor = self.request.user
-        form.save()
+    def post(self,request,*args, **kwargs):
+        self.Articulo=self.get_object()
+        #form=self.get_form()
+        return super().post(request,*args,**kwargs) 
+    
+    def form_valid(self,form):
+        #comentario=self.form_get()
+        comentario=form.save(commit=False)
+        comentario.Articulo=self.Articulo
+        comentario.save()
         return super().form_valid(form)
 
     def get_success_url(self):
-        return reverse('detalle_articulo', kwargs={'pk': self.object.pk})
-
-    def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context['form'] = FormularioComentario()
-        return context
-    
+        articulo=self.get_object()
+        return reverse('detalle_articulo',kwargs={'pk':articulo.pk})   
+   
     

@@ -164,7 +164,7 @@ AUTH_USER_MODEL = 'cuentas.UsuarioPers'
 LOGIN_URL = 'login'
 
 EMAIL_BACKEND='django.core.main.backends.smtp.EmailBackend'
-DEFAULT_FROM_EMAIL = 'Remitente del correo<direccio_origen@email.com>'
+DEFAULT_FROM_EMAIL = 'Remitente del correo<direccio_origen@gmail.com>'
 EMAIL_HOST = 'smtp.sendgrid.net'
 EMAIL_HOST_USER ='apikey'
 EMAIL_HOST_PASSWORD='contraseña_sendgrid'
