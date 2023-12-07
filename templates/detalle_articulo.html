@@ -36,6 +36,7 @@
 
 <div>
 <hr>
+    {% if user.is_authenticated %}
 <div class="mx-auto w-50 text-center">    
     <h4>Agregar un comentario</h4>
     <form method="post" >
@@ -48,9 +49,10 @@
     </form>
 
 </div>
+    {% endif %}
     <h4 > <p text-align="center">Comentarios</p></h4>
 </div>
     {% for comentario in object.comentario_set.all %}
-    <p>{{ comentario.autor }} &middot; {{ comentario }}</p>
+    <h4><p text-align="center">{{ comentario.autor }} &middot; {{ comentario }}</p></h4>
     {% endfor %}
 {% endblock contenido %}
