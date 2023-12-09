@@ -7,7 +7,9 @@
 <h1><p text-align="center">Eliminar entrada</p></h1>
 <form action="" method="post">{% csrf_token %}
     <h2><p>Estas completamente seguro que deseas eliminar '<b>{{object.titulo}}</b>'</p>
+        {% if object.imagen %}
     <img src="{{ object.imagen.url }}" alt="image">
+        {% endif %}
     <div text-align = "center"></h2>
     <p text-align="center">
     <button class="btn btn-outline-white btn-danger" type="submit">Confirmar</button>

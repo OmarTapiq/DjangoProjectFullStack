@@ -9,9 +9,9 @@ from .views import (
 
 urlpatterns = [
     path('',VistaListaArticulos.as_view(),name='lista_articulos'),
-    path('<int:pk>/',VistaDetalleArticulo.as_view(),name='detalle_articulo') ,
-    path('editar/<int:pk>/',VistaModificacionArticulo.as_view(),name='editar_articulo'),
-    path('eliminar/<int:pk>/',VistaEliminacionArticulo.as_view(),name='eliminar_articulo'),
+    path('<uuid:pk>/',VistaDetalleArticulo.as_view(),name='detalle_articulo') ,
+    path('editar/<uuid:pk>/',VistaModificacionArticulo.as_view(),name='editar_articulo'),
+    path('eliminar/<uuid:pk>',VistaEliminacionArticulo.as_view(),name='eliminar_articulo'),
     path('nuevo/',VistaCrearArticulo.as_view(),name='nuevo_articulo'),
     path('categorias/', VistaListaCategorias.as_view(), name='lista_categorias'),
     path('articulos/<str:genero>/', VistaListaArticulos.as_view(), name='lista_articulos_por_genero'),
