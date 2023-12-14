@@ -23,6 +23,38 @@
 
 
    <p text-align="center"><h2>{{object.costo}}$</h2></p>
+   
+{% if user.is_authenticated %}
+<div class="d-flex justify-content-center align-items-center">
+    <!-- Set up a container element for the button -->
+    <div id="paypal-button-container"></div>
+
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AZNkSN0MfQYdRhE_J9vfmAh4Ja1Ritmcu1keaeht0luJRB8O_jBVDFyAQCAXv96rgEk8ocDn6PPcszk5&currency=MXN"></script>
+    <script>
+        // Render the PayPal button into #paypal-button-container
+        var userName = "{{ user.username }}";
+        paypal.Buttons({
+            // Call your server to set up the transaction
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: {{object.costo}},
+                        }
+                    }]
+                });
+            },
+            // Call your server to finalize the transaction
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert('Transacccion completada por '+ userName +' de $'+ details.purchase_units[0].amount.value);
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
+</div>
+{% endif %}
    <hr>
     <p text-align="center" font-size=20px >{{object.cuerpo}}</p>
    <hr>
@@ -55,4 +87,6 @@
     {% for comentario in object.comentario_set.all %}
     <h4><p text-align="center">{{ comentario.autor }} &middot; {{ comentario }}</p></h4>
     {% endfor %}
+    
 {% endblock contenido %}
+

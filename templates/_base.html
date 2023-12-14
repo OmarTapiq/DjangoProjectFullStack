@@ -20,7 +20,7 @@
         <div class="container-fuid bg-danger rounded"  style="padding-top: 20px; padding-bottom: 20px;">
             <a href="/"  class="navbar-brand">
             <span class="h2 text-white">TecGames</span>
-            <span class="h4 text-white">by ahab </span>
+            <span class="h4 text-white">by ahab {% if user.is_staff %}(modo Admin){% endif %}</span>
             <nav>
                 <ul>
                     <li><a class="btn btn-outline-light" href="/">Home 🏠</a></li>
